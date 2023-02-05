@@ -1,7 +1,13 @@
+import pytest
 from utils import dicts
 
 
-def test_get_val():
-    assert dicts.get_val({"vcs": "mercurial"}, "vcs",) == "mercurial"
-    assert dicts.get_val({"vcs": "mercurial"}, "vcc",) == "git"
-    assert dicts.get_val({"vcs": "mercurial"}, "vcc", "bazaar") == "bazaar"
+@pytest.fixture
+def dictionary():
+    return {"vcs": "mercurial"}
+
+
+def test_get_val(dictionary):
+    assert dicts.get_val(dictionary, "vcs",) == "mercurial"
+    assert dicts.get_val(dictionary, "vcc",) == "git"
+    assert dicts.get_val(dictionary, "vcc", "bazaar") == "bazaar"
